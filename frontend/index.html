@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Algorithm UI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ebebeb; /* Placeholder for the background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: #333;
+            border-radius: 20px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+            color: white;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header img {
+            height: 50px;
+            width: 50px; /* Placeholder size */
+            background-color: #fff; /* Placeholder color */
+            border-radius: 50%;
+        }
+        .header h1 {
+            font-size: 24px;
+        }
+        .header .icon {
+            height: 30px;
+            width: 30px; /* Placeholder size */
+            background-color: #fff; /* Placeholder color */
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .content h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-row button {
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+        .algorithmsTitle{
+             text-align: center;
+          
+
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin: 10px 0;
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%; /* Placeholder percentage */
+            background-color: #4caf50;
+        }
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 40%; /* Placeholder percentage, aka change width based on the var later */
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <img src="static/lebraman.png" alt="User Icon" />
+            <h1>Vishy Aman</h1>
+            <img src="static/amanChess.png" alt="Settings Icon" />
+        </div>
+        <div class="content">
+            <h2 class ="algorithmsTitle">Algorithms</h2>
+            <hr>
+            <div class="button-row">
+                <button>Algo 1</button>
+                <button>Algo 2</button>
+            </div>
+            <h2>Best Move: KE5</h2>
+            <h2>Time: 3 Seconds</h2>
+            <div class="progress-bar"></div>
+        </div>
+        <div class="button-row">
+            <button>Undo</button>
+            <button>Redo</button>
+        </div>
+    </div>
+</body>
+</html>
+
