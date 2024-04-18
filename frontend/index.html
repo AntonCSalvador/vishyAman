@@ -21,7 +21,6 @@
             background: #333;
             border-radius: 20px;
             padding: 20px;
-            width: 300px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.25);
             color: white;
         }
@@ -46,6 +45,8 @@
         }
         .content {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
         }
         .content h2 {
             font-size: 18px;
@@ -53,7 +54,7 @@
         }
         .button-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
         }
         .button-row button {
             padding: 10px 20px;
@@ -88,6 +89,11 @@
             width: 40%; /* Placeholder percentage, aka change width based on the var later */
             background-color: #f44336;
         }
+        #positionInput {
+            padding: 10px;
+            margin-right: 10px;
+            min-width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -99,20 +105,22 @@
         </div>
         <div class="content">
             <h2 class ="algorithmsTitle">Algorithms</h2>
-            <hr>
+            <canvas id="board" width="480" height="480"></canvas>
+            <code id="currentPositionText"></code>
             <div class="button-row">
-                <button>Algo 1</button>
-                <button>Algo 2</button>
+                <button>BFS</button>
+                <button>DFS</button>
             </div>
             <h2>Best Move: KE5</h2>
             <h2>Time: 3 Seconds</h2>
             <div class="progress-bar"></div>
         </div>
         <div class="button-row">
-            <button>Undo</button>
-            <button>Redo</button>
+            <input type="text" id="positionInput" placeholder="Enter FEN Position"/>
+            <input type="button" value="Enter" onclick="updatePosition()">
         </div>
     </div>
+    <script src="static/board.js"></script>
 </body>
 </html>
 
