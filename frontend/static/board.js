@@ -4,6 +4,7 @@ updateBoard();
 function updatePosition() {
   position = document.getElementById("positionInput").value;
   document.getElementById("positionInput").value = "";
+  sendFen(position);
   updateBoard();
 }
 
@@ -50,3 +51,23 @@ function updateBoard() {
     currPiece++;
   }
 }
+
+function sendFen(fen) {
+  fetch('http://localhost:5000/process_fen', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ fen: fen })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    // Optionally update some element with the result from the server
+    document.getElementById('currentPositionText').textContent = data.result;
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
