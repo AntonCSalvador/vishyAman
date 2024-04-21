@@ -1,2 +1,7 @@
 .venv
 .git
+config.yml
+**/__pycache__
+/engines/*
+!/engines/README.md
+**/data/*
