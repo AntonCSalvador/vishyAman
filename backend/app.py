@@ -15,7 +15,7 @@ def process_fen():
     return jsonify({'result': result})  # Return result as JSON
 
 def process_fen_string(fen):
-    # Replace this placeholder with the actual logic to process the FEN string
+    # call actual functions and return the time vals and stuff here
     return f"Processed FEN: {fen}"  # Example processing function
 
 if __name__ == '__main__':
