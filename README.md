@@ -36,9 +36,9 @@ Our approach involves searching lichess game positions for the best move using a
 - **Backend Lead:** Caleb Owens
 - **Full Stack Developer:** Cameron Daniels
 
-## Running the Chess Analysis Website
+## Running Vishy Aman
 
-This project consists of both frontend and backend components for analyzing chess positions and suggesting optimal moves using Depth-First Search (DFS) and Breadth-First Search (BFS) algorithms.
+This project consists of both frontend and backend components for analyzing chess positions and suggesting optimal moves using Depth-First Search (DFS) and Breadth-First Search (BFS) algorithms and comparing the times.
 
 ### Prerequisites
 - Python 3.x
@@ -56,6 +56,11 @@ This project consists of both frontend and backend components for analyzing ches
 2. **Navigate to the Backend Directory:**
     ```
     cd backend
+    ```
+
+2. **Pip install all dependencies:**
+    ```
+    pip install -r requirements.txt
     ```
 
 3. **Run the Flask Application:**
@@ -82,7 +87,7 @@ This project consists of both frontend and backend components for analyzing ches
         ```
 
 7. **Submit and Wait for Analysis:**
-    - Press `Enter` or click on the submit button to initiate the analysis.
+    - Click on the submit button to initiate the analysis.
     - Wait for the backend to process the FEN string and provide the optimal moves.
 
 8. **Boom!**
