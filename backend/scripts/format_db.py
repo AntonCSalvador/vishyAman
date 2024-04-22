@@ -1,5 +1,5 @@
 with open("../data/lichess_db_standard_rated_2013-01.pgn", "r") as f:
-    with open("lichess_db.pgn", "w") as output:
+    with open("../data/lichess_db.pgn", "w") as output:
         lines = f.readlines()
         for line in lines:
             if not line.startswith("[") and not line == "\n":
