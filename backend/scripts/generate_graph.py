@@ -1,6 +1,8 @@
 import sys
 
+sys.path.append("./evaluation")
 sys.path.append("../evaluation")
+sys.path.append("./backend/evaluation")
 
 from homemade import sunfishEval
 import chess
@@ -59,6 +61,6 @@ def jsonify_graph(graph, filename):
 if __name__ == "__main__":
     fen = "5rk1/P3P3/PPPP1pKp/3pp2P/4pP1P/pppp1P1p/2p5/1K1R1RK1 w - -"
     board = chess.Board(fen)
-    graph = generate_graph(board, 4, 0.0, display_progress=True)
-    jsonify_graph(graph, "../data/graph.json")
+    graph = generate_graph(board, 4, 0.5, display_progress=True)
+    jsonify_graph(graph, "../data/ex2.json")
     # print_graph(graph)

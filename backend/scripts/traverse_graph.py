@@ -1,9 +1,30 @@
 from generate_graph import generate_graph, print_graph, print_move
 import json
+from queue import Queue
 
-def bfs_eval(input_graph):
-    graph = input_graph.copy()
-    pass
+# def bfs_eval(input_graph):
+#     graph = input_graph.copy()
+#     if not graph:
+#         return []
+
+#     # Initialize a queue for BFS
+#     queue = Queue(graph)
+
+#     # Process the graph in BFS manner
+#     while queue:
+#         current_node = queue.get()
+
+#         # Check if current node has children
+#         if current_node["next"]:
+#             # If so, update its value based on the maximum value of its children
+#             current_node["value"] = max(child["value"] for child in current_node["next"])
+
+#             # Enqueue all children for further processing
+#             for child in current_node["next"]:
+#                 queue.append(child)
+
+#     # Return the updated root node value
+#     return graph[0]["next"]
 
 
 def dfs_eval(input_graph):
@@ -26,7 +47,7 @@ def dfs_eval(input_graph):
     return graph[0]["next"]
 
 
-def greedy_search(input_graph):
+def bfs_eval(input_graph):
     graph = input_graph.copy()
     moves = []
     depth = graph[-1]["depth"]
@@ -44,16 +65,12 @@ def greedy_search(input_graph):
     for i in range(len(moves) - 2, -1, -1):
         moves[i]["value"] += moves[i + 1]["value"]
     
-    return moves[0]
+    return moves
+
 
 if __name__ == "__main__":
-    with open("../data/graph.json") as file:
+    with open("../data/ex1.json") as file:
         graph = json.load(file)
-
-    move = greedy_search(graph)
-    print("Greedy search result:")
-    print_move(move)
-    print()
 
     print("DFS eval results:")
     eval = dfs_eval(graph)
@@ -63,3 +80,14 @@ if __name__ == "__main__":
     
     print("Best DFS move:")
     print_move(max(eval, key=lambda item: item["value"]))
+    print()
+
+    print("BFS eval results:")
+    eval = bfs_eval(graph)
+    for move in eval:
+        print_move(move)
+    print()
+    
+    print("Best BFS move:")
+    print_move(max(eval, key=lambda item: item["value"]))
+    print()
