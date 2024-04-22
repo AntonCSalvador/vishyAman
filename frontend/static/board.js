@@ -70,6 +70,12 @@ function updateBoard() {
 }
 
 function getRandomPosition() {
+  document.getElementById('viewDfs').style.display = 'none';
+  document.getElementById('viewBfs').style.display = 'none';
+  document.getElementById('generateTime').textContent = `Loading`
+  document.getElementById('dfsBestMove').textContent = 'Loading';
+  document.getElementById('bfsBestMove').textContent = 'Loading';
+
   fetch("http://127.0.0.1:5000/random_fen", {
     method: "GET",
     headers: {

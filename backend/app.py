@@ -5,6 +5,7 @@ from scripts.generate_graph import generate_graph, jsonify_graph
 from scripts.traverse_graph import dfs_eval, bfs_eval
 from time import time
 import random
+from math import ceil
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})  # Configure CORS to allow all origins for all routes
@@ -50,7 +51,7 @@ def process_fen_string(fen, greed):
     print("before generateGraph")
     start_time_generate = time()
     graph = generate_graph(board, 4, greed, display_progress=True)
-    generate_duration = int(time() - start_time_generate)
+    generate_duration = ceil(time() - start_time_generate)
     print("before dfs eval and bfs eval")
 
     # Time DFS evaluation
