@@ -3,8 +3,10 @@ updateBoard();
 
 function updatePosition() {
   position = document.getElementById("positionInput").value;
+  greed = document.getElementById("greedInput").value;
   document.getElementById("positionInput").value = "";
-  sendFen(position);
+  document.getElementById("greedInput").value = "";
+  sendFen(position, greed);
   updateBoard();
 }
 
@@ -52,24 +54,27 @@ function updateBoard() {
   }
 }
 
-function sendFen(fen) {
+function sendFen(fen, greed) {
   fetch('http://127.0.0.1:5000/process_fen', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ fen: fen })
+    body: JSON.stringify({ fen: fen, greed: greed })
   })
   .then(response => response.json())
   .then(data => {
     console.log('Success:', data);
     // Update the frontend with BFS and DFS results, including execution times
-    if (data.result.dfs_best_move && data.result.dfs_time_ms) {
+    if (data.result.generate_time_s) {
+      document.getElementById('generateTime').textContent = `Time taken to generate graph: ${data.result.generate_time_s} s`
+    }
+    if (data.result.dfs_best_move) {
       document.getElementById('dfsBestMove').textContent = `DFS Best Move: ${data.result.dfs_best_move} (Time: ${data.result.dfs_time_ms} ms)`;
     } else {
       document.getElementById('dfsBestMove').textContent = `DFS Best Move: No move found`;
     }
-    if (data.result.bfs_best_move && data.result.bfs_time_ms) {
+    if (data.result.bfs_best_move) {
       document.getElementById('bfsBestMove').textContent = `BFS Best Move: ${data.result.bfs_best_move} (Time: ${data.result.bfs_time_ms} ms)`;
     } else {
       document.getElementById('bfsBestMove').textContent = `BFS Best Move: No move found`;

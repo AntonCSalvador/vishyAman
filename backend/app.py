@@ -14,19 +14,22 @@ def process_fen():
     try:
         data = request.get_json()
         fen = data['fen']
-        print("Processing FEN:", fen)  # Debug output
-        result = process_fen_string(fen)
+        greed = float(data['greed'])
+        print("Processing FEN:", fen, "with greed:", greed)  # Debug output
+        result = process_fen_string(fen, greed)
         print("Result:", result)  # Debug output
         return jsonify({'result': result})
     except Exception as e:
         print("Error processing request:", str(e))  # Print any errors during processing
         return jsonify({'error': 'Failed to process request'}), 500
 
-def process_fen_string(fen):
+def process_fen_string(fen, greed):
     print("before chess.Board(fen)")
     board = chess.Board(fen)
     print("before generateGraph")
-    graph = generate_graph(board, 4, 0.5, display_progress=True)
+    start_time_generate = time()
+    graph = generate_graph(board, 4, greed, display_progress=True)
+    generate_duration = int(time() - start_time_generate)
     print("before dfs eval and bfs eval")
 
     # Time DFS evaluation
@@ -46,6 +49,7 @@ def process_fen_string(fen):
 
     # Construct the response object
     result = {
+        "generate_time_s": generate_duration,
         "dfs_best_move": best_dfs_move["move"] if best_dfs_move else "No move found",
         "bfs_best_move": best_bfs_move["move"] if best_bfs_move else "No move found",
         "dfs_time_ms": dfs_duration,  # Time in milliseconds
