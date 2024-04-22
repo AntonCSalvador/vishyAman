@@ -36,3 +36,55 @@ Our approach involves searching lichess game positions for the best move using a
 - **Backend Lead:** Caleb Owens
 - **Full Stack Developer:** Cameron Daniels
 
+## Running the Chess Analysis Website
+
+This project consists of both frontend and backend components for analyzing chess positions and suggesting optimal moves using Depth-First Search (DFS) and Breadth-First Search (BFS) algorithms.
+
+### Prerequisites
+- Python 3.x
+- Flask
+- Chess (Python chess library)
+- Firefox (or any web browser)
+
+### Instructions
+
+1. **Clone the Repository:**
+    ```
+    git clone <repository-url>
+    ```
+
+2. **Navigate to the Backend Directory:**
+    ```
+    cd backend
+    ```
+
+3. **Run the Flask Application:**
+    ```
+    python3 app.py
+    ```
+
+4. **Navigate to the Frontend Directory:**
+    ```
+    cd ../frontend
+    ```
+
+5. **Open `index.html` in Your Web Browser:**
+    - Double-click on `index.html` to open it in your default web browser.
+    - Alternatively, open `index.html` using Firefox by running:
+        ```
+        firefox index.html
+        ```
+
+6. **Input a FEN String:**
+    - In the input field provided, enter a valid FEN string representing a chess position. For example:
+        ```
+        rnbqkb1r/p1pp1ppp/1p5n/4p3/4P3/7N/PPPP1PPP/RNBQKB1R w KQkq - 0 4
+        ```
+
+7. **Submit and Wait for Analysis:**
+    - Press `Enter` or click on the submit button to initiate the analysis.
+    - Wait for the backend to process the FEN string and provide the optimal moves.
+
+8. **Boom!**
+    - Once the analysis is complete, the frontend will display the best moves suggested by DFS and BFS algorithms.
+    - You will also see the time taken for each algorithm to compute the results.
