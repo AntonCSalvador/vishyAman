@@ -3,7 +3,27 @@ import json
 
 def bfs_eval(input_graph):
     graph = input_graph.copy()
-    pass
+    if not graph:
+        return []
+
+    # Initialize a queue for BFS
+    queue = deque(graph)
+
+    # Process the graph in BFS manner
+    while queue:
+        current_node = queue.popleft()
+
+        # Check if current node has children
+        if current_node["next"]:
+            # If so, update its value based on the maximum value of its children
+            current_node["value"] = max(child["value"] for child in current_node["next"])
+
+            # Enqueue all children for further processing
+            for child in current_node["next"]:
+                queue.append(child)
+
+    # Return the updated root node value
+    return graph[0]
 
 
 def dfs_eval(input_graph):
