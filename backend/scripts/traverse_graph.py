@@ -1,4 +1,5 @@
-from generate_graph import generate_graph, print_graph, print_move
+# from generate_graph import generate_graph, print_graph, print_move
+from .generate_graph import generate_graph, print_graph, print_move
 import json
 from queue import Queue
 

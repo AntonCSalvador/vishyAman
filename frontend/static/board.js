@@ -53,7 +53,7 @@ function updateBoard() {
 }
 
 function sendFen(fen) {
-  fetch('http://localhost:5000/process_fen', {
+  fetch('http://127.0.0.1:5000/process_fen', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -63,11 +63,24 @@ function sendFen(fen) {
   .then(response => response.json())
   .then(data => {
     console.log('Success:', data);
-    // Optionally update some element with the result from the server
-    document.getElementById('currentPositionText').textContent = data.result;
+    // Update the frontend with BFS and DFS results, including execution times
+    if (data.result.dfs_best_move && data.result.dfs_time_ms) {
+      document.getElementById('dfsBestMove').textContent = `DFS Best Move: ${data.result.dfs_best_move} (Time: ${data.result.dfs_time_ms} ms)`;
+    } else {
+      document.getElementById('dfsBestMove').textContent = `DFS Best Move: No move found`;
+    }
+    if (data.result.bfs_best_move && data.result.bfs_time_ms) {
+      document.getElementById('bfsBestMove').textContent = `BFS Best Move: ${data.result.bfs_best_move} (Time: ${data.result.bfs_time_ms} ms)`;
+    } else {
+      document.getElementById('bfsBestMove').textContent = `BFS Best Move: No move found`;
+    }
   })
   .catch((error) => {
     console.error('Error:', error);
+    // Handle errors gracefully on the frontend
+    document.getElementById('dfsBestMove').textContent = 'DFS Best Move: Error fetching data';
+    document.getElementById('bfsBestMove').textContent = 'BFS Best Move: Error fetching data';
   });
 }
+
 
