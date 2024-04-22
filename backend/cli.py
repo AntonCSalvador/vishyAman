@@ -62,7 +62,7 @@ def cli():
                         continue
 
                 selection = input("Would you like to view the graph generator's progress? [y/N] >> ")
-                if not selection == "y" and not selection == "Y":
+                if selection == "y" or selection == "Y":
                     display_progress = True
                 else:
                     display_progress = False
