@@ -151,6 +151,9 @@ def sunfishValue(board: chess.Board, move, color):
 def sunfishEval(board: chess.Board, player=True, depth=0):
     matVal = []
     legalMoves = list(board.generate_legal_moves())
+    if not legalMoves:
+        return []
+        
     if (player == True):
         color = chess.WHITE if board.piece_at(legalMoves[0].from_square).color == chess.WHITE else chess.BLACK
         enemy_color = chess.BLACK if color == chess.WHITE else chess.WHITE

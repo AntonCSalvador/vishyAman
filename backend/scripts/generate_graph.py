@@ -6,8 +6,10 @@ from homemade import sunfishEval
 import chess
 import json
 from math import ceil
+from time import time
 
 def generate_graph(board: chess.Board, depth: int, greed=0.0, display_progress=False):
+    start_time = int(time())
     count = 0
 
     graph = [{"move":None,"response":None,"value":None,"fen":board.fen(),"depth":0,"next":[]}]
@@ -30,12 +32,17 @@ def generate_graph(board: chess.Board, depth: int, greed=0.0, display_progress=F
 
                 if display_progress:
                     count += 1
-                    print(f"Evaluated {count} positions")
+                    if count % 100 == 0:
+                        print(f"Evaluated {count} positions")
+            
+    if display_progress:
+        print(f"Done! Evaluated {count} positions in {int(time()) - start_time} seconds")
 
     return graph
 
-def print_move(move):
+def print_move(move, end="\n"):
     print(move["move"], move["response"], move["value"], end=" ")
+    print(end, end="")
 
 def print_graph(graph):
     for item in graph:
@@ -50,9 +57,8 @@ def jsonify_graph(graph, filename):
         json.dump(graph, f, indent=2)
     
 if __name__ == "__main__":
-    board = chess.Board()
-    # board = chess.Board("8/5k2/3p4/1p1Pp2p/pP2Pp1P/P4P1K/8/8 w - - 99 50")
-    graph = generate_graph(board, 4, 0.5, display_progress=True)
-    print(f"Positions: {len(graph)}")
+    fen = "5rk1/P3P3/PPPP1pKp/3pp2P/4pP1P/pppp1P1p/2p5/1K1R1RK1 w - -"
+    board = chess.Board(fen)
+    graph = generate_graph(board, 4, 0.0, display_progress=True)
     jsonify_graph(graph, "../data/graph.json")
     # print_graph(graph)
