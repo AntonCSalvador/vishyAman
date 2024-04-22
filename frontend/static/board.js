@@ -1,4 +1,5 @@
 let position = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+let greed = 0.0
 let dfs_position = ""
 let bfs_position = ""
 
@@ -28,7 +29,9 @@ function updateBoard() {
   let ctx = c.getContext("2d");
 
   let currentPositionText = document.getElementById("currentPositionText");
+  let currentGreedText = document.getElementById("currentGreedText");
   currentPositionText.innerHTML = position;
+  currentGreedText.innerHTML = `greed = ${greed}`
 
   for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
@@ -60,11 +63,29 @@ function updateBoard() {
       ctx.drawImage(img, x * 60, y * 60);
     });
     img.src = `static/pieces/${piece}.png`;
-    console.log(img.src, x, y);
 
     currSquare++;
     currPiece++;
   }
+}
+
+function getRandomPosition() {
+  fetch("http://127.0.0.1:5000/random_fen", {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    if (data.result.fen) {
+      sendFen(data.result.fen, data.result.greed);
+    }
+    position = data.result.fen;
+    greed = data.result.greed;
+    updateBoard();
+  })
 }
 
 function sendFen(fen, greed) {

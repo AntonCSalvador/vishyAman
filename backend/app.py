@@ -4,9 +4,30 @@ import chess
 from scripts.generate_graph import generate_graph, jsonify_graph
 from scripts.traverse_graph import dfs_eval, bfs_eval
 from time import time
+import random
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})  # Configure CORS to allow all origins for all routes
+
+@app.route('/random_fen', methods=["GET"])
+def random_fen():
+    print("Recieved request for random fen")
+    try: 
+        with open("./examples/example_fens.txt") as examples:
+            example = random.choice([x for x in examples])
+        fen = example
+        greed = random.random() * 0.9
+        print("Processing FEN:", fen, "with greed:", greed)  # Debug output
+        result = {
+            "fen":fen,
+            "greed":greed
+        }
+        print("Result:", result)  # Debug output
+        return jsonify({'result': result})
+
+    except Exception as e:
+        print("Error processing request:", str(e))  # Print any errors during processing
+        return jsonify({'error': 'Failed to process request'}), 500
 
 @app.route('/process_fen', methods=['POST'])
 def process_fen():
