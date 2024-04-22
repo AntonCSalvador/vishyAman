@@ -52,6 +52,8 @@ def process_fen_string(fen, greed):
         "generate_time_s": generate_duration,
         "dfs_best_move": best_dfs_move["move"] if best_dfs_move else "No move found",
         "bfs_best_move": best_bfs_move["move"] if best_bfs_move else "No move found",
+        "dfs_fen": best_dfs_move["fen"] if best_dfs_move else "",
+        "bfs_fen": best_bfs_move["fen"] if best_bfs_move else "",
         "dfs_time_ms": dfs_duration,  # Time in milliseconds
         "bfs_time_ms": bfs_duration   # Time in milliseconds
     }

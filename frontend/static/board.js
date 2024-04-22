@@ -1,4 +1,7 @@
 let position = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+let dfs_position = ""
+let bfs_position = ""
+
 updateBoard();
 
 function updatePosition() {
@@ -7,6 +10,16 @@ function updatePosition() {
   document.getElementById("positionInput").value = "";
   document.getElementById("greedInput").value = "";
   sendFen(position, greed);
+  updateBoard();
+}
+
+function viewDfs() {
+  position = dfs_position;
+  updateBoard();
+}
+
+function viewBfs() {
+  position = bfs_position;
   updateBoard();
 }
 
@@ -71,11 +84,15 @@ function sendFen(fen, greed) {
     }
     if (data.result.dfs_best_move) {
       document.getElementById('dfsBestMove').textContent = `DFS Best Move: ${data.result.dfs_best_move} (Time: ${data.result.dfs_time_ms} ms)`;
+      document.getElementById('viewDfs').style.display = 'block';
+      dfs_position = data.result.dfs_fen;
     } else {
       document.getElementById('dfsBestMove').textContent = `DFS Best Move: No move found`;
     }
     if (data.result.bfs_best_move) {
       document.getElementById('bfsBestMove').textContent = `BFS Best Move: ${data.result.bfs_best_move} (Time: ${data.result.bfs_time_ms} ms)`;
+      document.getElementById('viewBfs').style.display = 'block';
+      bfs_position = data.result.bfs_fen;
     } else {
       document.getElementById('bfsBestMove').textContent = `BFS Best Move: No move found`;
     }
@@ -83,6 +100,7 @@ function sendFen(fen, greed) {
   .catch((error) => {
     console.error('Error:', error);
     // Handle errors gracefully on the frontend
+    document.getElementById('generateTime').textContent = 'Time taken to generate graph: Error fetching data'
     document.getElementById('dfsBestMove').textContent = 'DFS Best Move: Error fetching data';
     document.getElementById('bfsBestMove').textContent = 'BFS Best Move: Error fetching data';
   });

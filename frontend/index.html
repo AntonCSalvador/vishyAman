@@ -113,13 +113,20 @@
             <canvas id="board" width="480" height="480"></canvas>
             <code id="currentPositionText"></code>
             <h2 id="generateTime">Time taken to generate graph: N/A</h2>
-            <h2 id="dfsBestMove">DFS Best Move: N/A</h2>
-            <h2 id="bfsBestMove">BFS Best Move: N/A</h2>            
+            <div>
+                <h2 id="dfsBestMove">DFS Best Move: N/A</h2>
+                <input type="button" value="View Move" id="viewDfs" onclick="viewDfs()" style="display:none;">
+            </div>
+            <div>
+                <h2 id="bfsBestMove">BFS Best Move: N/A</h2>            
+                <input type="button" value="View Move" id="viewBfs" onclick="viewBfs()" style="display:none;">
+            </div>
         </div>
         <div class="button-row">
             <input type="text" id="positionInput" placeholder="Enter FEN Position"/>
             <input type="number" id="greedInput" placeholder="Greed: 0.0 - 0.9" />
-            <input type="button" value="Enter" onclick="updatePosition()">
+            <input type="button" value="Enter" onclick="updatePosition()" />
+            <input type="button" value="Randomize" onclick="getRandomPosition()" />
         </div>
     </div>
     <script src="static/board.js"></script>
