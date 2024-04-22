@@ -93,3 +93,15 @@ This project consists of both frontend and backend components for analyzing ches
 8. **Boom!**
     - Once the analysis is complete, the frontend will display the best moves suggested by DFS and BFS algorithms.
     - You will also see the time taken for each algorithm to compute the results.
+
+## Troubleshooting
+
+If you encounter issues while setting up or running Vishy Aman, here are a few common problems and their solutions:
+
+- **Dependency Installations:** Ensure that you have correctly installed all the dependencies. Refer back to the step where you run `pip install -r requirements.txt` in the backend directory. If you encounter any errors during installation, make sure Python and pip are correctly installed and up to date on your system.
+
+- **Correct Fetch URL in `board.js`:** When the frontend attempts to communicate with the backend, it uses a fetch request in `board.js`. Ensure that this fetch request points to the correct URL where `app.py` is running. Typically, this will be something like `http://127.0.0.1:5000/process_fen`. If you've configured the Flask app to run on a different port or host, you'll need to update this URL accordingly but MAKE SURE YOU ADD THE `/process_fen`.
+
+- **Browser Compatibility:** If you're experiencing issues with how the website looks or behaves, make sure you're using a compatible web browser. We recommend using the latest version of Firefox, Chrome, or Safari. If you're using a different or outdated browser, some features might not function as expected.
+
+By following these troubleshooting steps, most common issues with running the Vishy Aman Chess Puzzle Solver should be resolved. If problems persist, consider checking console logs in your web browser for any error messages that could provide more insight into the issue.
