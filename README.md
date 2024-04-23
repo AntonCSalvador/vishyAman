@@ -50,7 +50,7 @@ This project consists of both frontend and backend components for analyzing ches
 
 1. **Clone the Repository:**
     ```
-    git clone <repository-url>
+    git clone git@github.com:AntonCSalvador/vishyAman.git
     ```
 
 2. **Navigate to the Backend Directory:**
